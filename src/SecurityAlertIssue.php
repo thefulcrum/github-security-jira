@@ -126,4 +126,65 @@ EOT;
 
         return "{$this->package}:{$this->manifestPath}:{$identifier}";
     }
+
+    /**
+     * Ensure that the issue exists.
+     *
+     * @return string the issue id.
+     */
+    public function ensure(): string
+    {
+        $existing = $this->exists();
+
+        if ($existing) {
+            return $existing;
+        }
+
+        $issueField = new IssueField();
+        $issueField->setProjectKey($this->project)
+            ->setSummary($this->title)
+            ->setIssueType($this->issueType)
+            ->setDescription($this->body);
+
+        foreach ($this->keyLabels as $label) {
+            $issueField->addLabel($label);
+        }
+        
+        try {
+            /** @var \JiraRestApi\Issue\Issue $ret */
+            $ret = $this->issueService->create($issueField);
+        } catch (Throwable $t) {
+            throw new RuntimeException("Could not create issue: {$t->getMessage()}");
+        }
+
+        $addedWatchers = [];
+        $notFoundWatchers = [];
+
+        foreach ($this->watchers as $watcher) {
+            $account = $this->findUser($watcher);
+
+            if (!$account) {
+                $notFoundWatchers[] = $watcher;
+
+                continue;
+            }
+
+            $this->issueService->addWatcher($ret->key, $account->accountId);
+            $addedWatchers[] = $account;
+        }
+
+        $commentText = $addedWatchers ?
+            \sprintf(self::WATCHERS_TEXT, $this->formatUsers($addedWatchers)) :
+            self::NO_WATCHERS_TEXT;
+
+        if ($notFoundWatchers) {
+            $commentText .= "\n\n" . \sprintf(self::NOT_FOUND_WATCHERS_TEXT, $this->formatQuoted($notFoundWatchers));
+        }
+
+        $comment = $this->createComment($commentText);
+
+        $this->issueService->addComment($ret->key, $comment);
+
+        return $ret->key;
+    }
 }
