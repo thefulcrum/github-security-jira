@@ -155,7 +155,8 @@ EOT;
         $issueField->addCustomField("customfield_10121", 0);
 
         // Set epic link
-        $issueField->addCustomField("customfield_10005", "HUB-988");
+        $epic = \getenv('JIRA_EPIC');
+        $issueField->addCustomField("customfield_10005", $epic);
 
         try {
             /** @var \JiraRestApi\Issue\Issue $ret */
