@@ -151,12 +151,6 @@ EOT;
             $issueField->addLabel($label);
         }
         
-        // Set story points
-        $issueField->addCustomField("customfield_10121", 0);
-
-        // Set epic link
-        $issueField->addCustomField("customfield_10005", "HUB-988");
-
         try {
             /** @var \JiraRestApi\Issue\Issue $ret */
             $ret = $this->issueService->create($issueField);
