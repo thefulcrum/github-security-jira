@@ -40,6 +40,11 @@ class SecurityAlertIssue extends JiraSecurityIssue
     protected string $severity;
 
     /**
+     * @var string
+     */
+    protected string $updatedAt;
+
+    /**
      * phpcs:disable SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint
      *
      * @param array<string,mixed> $data
@@ -53,6 +58,7 @@ class SecurityAlertIssue extends JiraSecurityIssue
         $this->manifestPath = \pathinfo($data['vulnerableManifestPath'], \PATHINFO_DIRNAME);
         $this->id = $data['securityVulnerability']['advisory']['ghsaId'];
         $this->severity = $data['securityVulnerability']['severity'];
+        $this->updatedAt = $data['securityVulnerability']['updatedAt'];
 
         $references = [];
 
@@ -150,13 +156,25 @@ EOT;
         foreach ($this->keyLabels as $label) {
             $issueField->addLabel($label);
         }
+
+        // Set Created Date customfield_11632
+        $issueField->addCustomField("customfield_11632", $this->updatedAt);
+
+        $severity_levels = [
+            "LOW" => "Low",
+            "MODERATE" => "Medium",
+            "HIGH" => "High",
+            "CRITICAL" => "Critical",
+
+        ];
+               
+        // Convert severity to Jira value e.g MODERATE -> Medium
+        $severity = $severity_levels[$this->severity];
+
+        // Set Severity customfield_11633 
+        $issueField->addCustomField("customfield_11633", [["value" => $severity]]);
+
         
-        // Set story points
-        $issueField->addCustomField("customfield_10121", 0);
-
-        // Set epic link
-        $issueField->addCustomField("customfield_10005", "HUB-988");
-
         try {
             /** @var \JiraRestApi\Issue\Issue $ret */
             $ret = $this->issueService->create($issueField);
