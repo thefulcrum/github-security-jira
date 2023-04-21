@@ -175,10 +175,10 @@ EOT;
 
         var_dump($severity);
 
-        var_dump([["value" => $severity]]);
+        var_dump(["name" => $severity]);
 
         // Set Severity customfield_11633 
-        $issueField->addCustomField("customfield_11633", [["name" => $severity]]);
+        $issueField->addCustomField("customfield_11633", ["name" => $severity]);
 
         
         try {
