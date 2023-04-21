@@ -167,9 +167,13 @@ EOT;
             "CRITICAL" => "Critical",
 
         ];
+
+        var_dump($this->severity);
                
         // Convert severity to Jira value e.g MODERATE -> Medium
         $severity = $severity_levels[$this->severity];
+
+        var_dump($severity);
 
         // Set Severity customfield_11633 
         $issueField->addCustomField("customfield_11633", [["value" => $severity]]);
