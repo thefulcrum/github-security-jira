@@ -111,6 +111,9 @@ EOT;
         foreach (\explode(',', $labels) as $label) {
             $this->setKeyLabel($label);
         }
+
+        // Remove CommentLevel
+        $this->restrictedCommentRole = '';
     }
 
     /**
