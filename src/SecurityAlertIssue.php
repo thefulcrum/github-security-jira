@@ -172,7 +172,7 @@ EOT;
         $severity = $severity_levels[$this->severity];
 
         // Set Severity customfield_11633 
-        $issueField->addCustomField("customfield_11633", [["value" => $severity]]);
+        $issueField->addCustomField("customfield_11633", ["value" => $severity]);
 
         
         try {
@@ -204,6 +204,10 @@ EOT;
 
         if ($notFoundWatchers) {
             $commentText .= "\n\n" . \sprintf(self::NOT_FOUND_WATCHERS_TEXT, $this->formatQuoted($notFoundWatchers));
+        }
+
+        if (empty($addedWatchers) && empty($notFoundWatchers)) {
+            return $ret->key;
         }
 
         $comment = $this->createComment($commentText);
