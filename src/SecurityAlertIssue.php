@@ -111,9 +111,6 @@ EOT;
         foreach (\explode(',', $labels) as $label) {
             $this->setKeyLabel($label);
         }
-
-        // Remove CommentLevel
-        $this->restrictedCommentRole = '';
     }
 
     /**
@@ -213,6 +210,10 @@ EOT;
 
         if ($notFoundWatchers) {
             $commentText .= "\n\n" . \sprintf(self::NOT_FOUND_WATCHERS_TEXT, $this->formatQuoted($notFoundWatchers));
+        }
+
+        if (empty($addedWatchers) && empty($notFoundWatchers)) {
+            return $ret->key;
         }
 
         $comment = $this->createComment($commentText);
