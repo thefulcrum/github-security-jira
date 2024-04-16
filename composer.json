@@ -7,7 +7,7 @@
         "softonic/graphql-client": "^2.1",
         "symfony/console": "^5",
         "symfony/yaml": "^6.1",
-        "reload/jira-security-issue": "^1.0.0"
+        "reload/jira-security-issue": "^2.0.0"
     },
     "repositories": [
       {
