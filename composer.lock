@@ -470,16 +470,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "3.6.0",
+            "version": "3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "4b18b21a5527a3d5ffdac2fd35d3ab25a9597654"
+                "reference": "f4393b648b78a5408747de94fca38beb5f7e9ef8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/4b18b21a5527a3d5ffdac2fd35d3ab25a9597654",
-                "reference": "4b18b21a5527a3d5ffdac2fd35d3ab25a9597654",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/f4393b648b78a5408747de94fca38beb5f7e9ef8",
+                "reference": "f4393b648b78a5408747de94fca38beb5f7e9ef8",
                 "shasum": ""
             },
             "require": {
@@ -555,7 +555,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/3.6.0"
+                "source": "https://github.com/Seldaek/monolog/tree/3.7.0"
             },
             "funding": [
                 {
@@ -567,7 +567,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-12T21:02:21+00:00"
+            "time": "2024-06-28T09:40:51+00:00"
         },
         {
             "name": "netresearch/jsonmapper",
@@ -1028,16 +1028,16 @@
         },
         {
             "name": "reload/jira-security-issue",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reload/jira-security-issue.git",
-                "reference": "26a4079d6d279673e957649f66eabb18af4b8a41"
+                "reference": "f07e2283a8b381da478f0020e94a92da6f6b9954"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reload/jira-security-issue/zipball/26a4079d6d279673e957649f66eabb18af4b8a41",
-                "reference": "26a4079d6d279673e957649f66eabb18af4b8a41",
+                "url": "https://api.github.com/repos/reload/jira-security-issue/zipball/f07e2283a8b381da478f0020e94a92da6f6b9954",
+                "reference": "f07e2283a8b381da478f0020e94a92da6f6b9954",
                 "shasum": ""
             },
             "require": {
@@ -1069,9 +1069,9 @@
             "description": "Create Jira issues if it doesn't exist",
             "support": {
                 "issues": "https://github.com/reload/jira-security-issue/issues",
-                "source": "https://github.com/reload/jira-security-issue/tree/v2.0.0"
+                "source": "https://github.com/reload/jira-security-issue/tree/v2.0.1"
             },
-            "time": "2024-04-16T08:05:22+00:00"
+            "time": "2024-07-09T04:51:50+00:00"
         },
         {
             "name": "softonic/graphql-client",
