@@ -297,7 +297,7 @@ GQL;
             return;
         }
 
-        $timestamp = \gmdate(\DATE_ISO8601);
+        $timestamp = \gmdate(\DATE_ATOM);
         $jira_project = \getenv('JIRA_PROJECT');
 
         $output->writeln("{$timestamp} - {$jira_project} - {$message}");
